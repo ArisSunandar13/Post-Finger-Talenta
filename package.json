@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "File": "^0.10.2",
+    "node-fetch": "^3.3.2"
+  },
+  "type": "module"
+}
