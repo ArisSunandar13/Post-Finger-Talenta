@@ -1,0 +1,12 @@
+.git
+data_csv
+mysql-data
+node_modules
+.dockerignore
+.gitignore
+docker-compose.yaml
+Dockerfile
+package-lock.json
+*.log
+*.sh
+db-config

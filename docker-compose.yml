@@ -1,0 +1,9 @@
+services:
+  post-finger-talenta:
+    build: .
+    container_name: post-finger-talenta
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    command: sh -c "npm install && node post_fingerprint.js"

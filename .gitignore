@@ -1,3 +1,10 @@
-node_modules/
+node_modules
 data_mdb
-package-lock.json
+*-lock.*
+data_csv
+mysql-data
+*.log
+*.sql
+client_secret_desktop_app.json
+token.json
+.env

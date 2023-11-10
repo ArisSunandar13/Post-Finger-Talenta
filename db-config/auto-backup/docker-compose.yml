@@ -1,0 +1,8 @@
+services:
+  post-to-drive:
+    build: .
+    container_name: post-to-drive
+    volumes:
+      - .:/app
+    command: ["python3", "upload_to_drive.py"]
+    
