@@ -21,11 +21,15 @@ const token = process.env.TOKEN_PROD;
 // const token = process.env.TOKEN_DEV;
 
 function writeLog(status, message) {
+    const result = `[${datetime_now}] ${status}: ${message} \n`
+
     fs.appendFile(
         `${process.argv[1].slice(0, -2)}log`,
-        `[${datetime_now}] ${status}: ${message} \n`,
+        result,
         () => { }
     );
+
+    console.log(result)
 }
 
 async function dbToCsv() {

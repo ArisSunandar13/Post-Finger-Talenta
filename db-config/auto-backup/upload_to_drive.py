@@ -15,9 +15,12 @@ datetime_now = datetime.now().strftime('%d%m%Y %H:%M:%S')
 
 def writeLog(status, message):
     path_file_log = f'{os.path.abspath(sys.argv[0])[:-2]}log'
+    result = f'[{datetime_now}] {status}: {message}\n'
 
     with open(path_file_log, 'a') as file_log:
-        file_log.write(f'[{datetime_now}] {status}: {message}\n')
+        file_log.write(result)
+    
+    print(result)
 
 
 def counting_days(items):
@@ -67,7 +70,7 @@ def uploadFile(service, folder_id):
         filesInCloud = [
             item for item in local_files if item in cloud_files
         ]
-        
+
         deleteLocalFiles(upload_path_file, filesInCloud)
 
         over_seven_days, under_seven_days = counting_days(filesNotInCloud)
