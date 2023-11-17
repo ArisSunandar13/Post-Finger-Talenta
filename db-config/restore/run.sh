@@ -2,10 +2,15 @@
 
 this_path="$(dirname $BASH_SOURCE[0])"
 
-file_name="$(ls | grep DbAbsensi-)"
+filename="$(ls | grep DbAbsensi-)"
 
-mv "$this_path/$file_name" "$this_path/DbAbsensi.sql"
+echo $filename
+
+new_filename="DbAbsensi.sql"
+
+mv "$this_path/$filename" "$this_path/$new_filename"
 
 docker compose -f "$this_path/docker-compose.yml" up -d
 
-mv "$this_path/DbAbsensi.sql" "$this_path/$file_name"
+rm "$this_path/$new_filename"
+rm -r "$this_path/$new_filename"
