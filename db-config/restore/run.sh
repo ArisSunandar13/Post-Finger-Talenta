@@ -13,4 +13,3 @@ mv "$this_path/$filename" "$this_path/$new_filename"
 docker compose -f "$this_path/docker-compose.yml" up -d
 
 rm "$this_path/$new_filename"
-rm -r "$this_path/$new_filename"
