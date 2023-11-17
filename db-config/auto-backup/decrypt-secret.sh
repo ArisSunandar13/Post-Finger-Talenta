@@ -19,14 +19,17 @@ echo "Passphrase 2:"
 read pass1
 
 # Proses decrypt
+rm $p3
 gpg --batch --passphrase $pass1 -o $p1 -d $p2
 gpg --batch --passphrase $pass2 -o $p3 -d $p1
 rm $p1
 
+rm $p5
 gpg --batch --passphrase $pass1 -o $p1 -d $p4
 gpg --batch --passphrase $pass2 -o $p5 -d $p1
 rm $p1
 
+rm $p7
 gpg --batch --passphrase $pass1 -o $p1 -d $p6
 gpg --batch --passphrase $pass2 -o $p7 -d $p1
 rm $p1
