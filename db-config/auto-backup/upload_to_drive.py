@@ -3,7 +3,7 @@ import sys
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
+from google_auth_oauthlib.flow import InstalledAppFlow, Flow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -19,7 +19,7 @@ def writeLog(status, message):
 
     with open(path_file_log, 'a') as file_log:
         file_log.write(result)
-    
+
     print(result)
 
 
@@ -186,16 +186,31 @@ def getCredentials():
             if creds and creds.expired and creds.refresh_token:
                 creds.refresh(Request())
             else:
-                flow = InstalledAppFlow.from_client_secrets_file(
+                # With GUI
+                # flow = InstalledAppFlow.from_client_secrets_file(
+                #     path_file_client_secret,
+                #     SCOPES
+                # )
+                # creds = flow.run_local_server(port=0)
+
+                # Without GUI
+                flow = Flow.from_client_secrets_file(
                     path_file_client_secret,
-                    SCOPES
-                )
-                creds = flow.run_local_server(port=0)
+                    scopes=SCOPES,
+                    redirect_uri='urn:ietf:wg:oauth:2.0:oob')
+                auth_url, _ = flow.authorization_url(prompt='consent')
+                print(f'Please go to this URL: {auth_url}')
+                code = input('Enter the authorization code : ')
+                flow.fetch_token(code=code)
+                creds = flow.credentials
             with open(path_file_token, 'w') as token:
                 token.write(creds.to_json())
 
         return creds
     except Exception as e:
+        path_file = "./token.json"
+        if os.path.exists(path_file):
+            os.remove(path_file)
         writeLog('Gagal get credentials', e)
 
 
