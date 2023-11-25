@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt install python3-pip -y
+pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
 docker run --rm -it --volume .:/app auto-backup-post-to-drive sh
 
 # RUN :
