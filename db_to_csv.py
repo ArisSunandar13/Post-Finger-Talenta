@@ -35,7 +35,8 @@ def dbToCsv():
         )
 
         cursor = conn.cursor()
-        query = "SELECT * FROM tbl_absensi WHERE status=0 AND LENGTH(nik)=7 ORDER BY id ASC;"
+        # query = "SELECT * FROM tbl_absensi WHERE status=0 AND LENGTH(nik)=7 ORDER BY id ASC;"
+        query = "SELECT * FROM tbl_absensi WHERE status=0 AND ORDER BY id ASC;"
         cursor.execute(query)
 
         data = cursor.fetchall()
