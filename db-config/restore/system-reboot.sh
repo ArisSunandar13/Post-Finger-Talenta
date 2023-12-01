@@ -2,5 +2,4 @@
 
 this_path="$(dirname $BASH_SOURCE[0])"
 
-docker compose -f "$this_path/docker-compose.yml" down \
-    && docker compose -f "$this_path/docker-compose.yml" up -d
+docker compose -f "$this_path/docker-compose.yml" up -d
