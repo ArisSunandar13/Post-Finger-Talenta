@@ -29,6 +29,8 @@ def main():
 
             with open(path_file_token, 'w') as token:
                 token.write(creds.to_json())
+            
+            print('\nToken has generated\n')
         except Exception as e:
             print(f"Error: {e}\n")
 

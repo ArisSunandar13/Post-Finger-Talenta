@@ -89,6 +89,8 @@ def uploadFile(service, folder_id):
 
             service.files().create(body=file_metadata, media_body=media_file).execute()
 
+            writeLog('Success', f'Upload file {file["name"]} to Drive')
+
     except Exception as e:
         writeLog(f'Gagal upload file: {e}')
 
@@ -219,8 +221,6 @@ def main():
         if files_id is not None:
             for file_id in files_id:
                 deleteCloudFile(service, file_id)
-
-        writeLog('Success', 'Done')
 
     except Exception as e:
         writeLog('Error', e)
