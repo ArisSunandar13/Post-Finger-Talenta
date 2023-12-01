@@ -6,4 +6,4 @@ services:
       - .:/app
     env_file:
       - .env
-    command: sh -c "npm install && node post_fingerprint.js"
+    command: sh -c "chmod +x start.sh && bash start.sh"

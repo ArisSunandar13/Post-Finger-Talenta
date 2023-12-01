@@ -29,7 +29,7 @@ function writeLog(status, message) {
         () => { }
     );
 
-    console.log(result)
+    console.log(`${result}\n`)
 }
 
 async function dbToCsv() {
@@ -77,7 +77,7 @@ async function updateStatus() {
 
 async function importFingerprint() {
     try {
-        await dbToCsv();
+        console.log(await dbToCsv())
 
         const file_csv_name = "absensi_formatted.csv";
         const formData = new FormData();
@@ -107,9 +107,9 @@ async function importFingerprint() {
         }).then(async (res) => {
             const result = await res.json();
 
-            await updateStatus();
-
             writeLog('Success post', JSON.stringify(result));
+
+            if (result.message == 'Success') console.log(await updateStatus())
         }).catch((err) => {
             writeLog("Error post", err.message);
         })

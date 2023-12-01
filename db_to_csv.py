@@ -21,7 +21,9 @@ except Exception as e:
 
 def writeLog(status, message):
     with open(path_file_log, 'a') as file_log:
-        file_log.write(f'[{time_now}] {status}: {message}\n')
+        result = f'[{time_now}] {status}: {message}\n'
+        file_log.write(result)
+        print(result)
 
 
 def dbToCsv():
@@ -81,7 +83,7 @@ def formatCsv():
 
                     writer.writerow({'Barcode': barcode, 'Nama': '',
                                     'Date': date, 'Time': time})
-            writeLog('Success', 'Done')
+            writeLog('Success', 'Get data from DB')
         except Exception as e:
             writeLog('Error formatCsv', e)
 

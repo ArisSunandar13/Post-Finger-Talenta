@@ -11,7 +11,9 @@ time_now = datetime.datetime.now().strftime('%d%m%Y %H:%M:%S')
 
 def writeLog(status, message):
     with open(path_file_log, 'a') as file_log:
-        file_log.write(f'[{time_now}] {status}: {message}\n')
+        result = f'[{time_now}] {status}: {message}\n'
+        file_log.write(result)
+        print(result)
 
 
 try:
@@ -40,6 +42,6 @@ try:
 
     conn.close()
 
-    writeLog('Success', 'Done')
+    writeLog('Success', 'Update Status')
 except Exception as e:
     writeLog('Error', e)
