@@ -19,17 +19,19 @@
 ### - In directory post-finger-talenta
 
 - run "`echo <<secret>> | base64`" to get password
+- copy the password
 - run "`gpg .env.gpg`" to decrypt file .env
 
 ### - In directory auto-backup
 
 - run "`echo <<secret>> | base64`" to get password
-- run "`gpg .env.gpg`" to decrypt file ".env"
-- run "`gpg client_secret_desktop_app.json`" to decrypt file "client_secret_desktop_app.json"
+- copy the password
+- run "`gpg .env.gpg && gpg client_secret_desktop_app.json.gpg`" to decrypt file ".env" and "client_secret_desktop_app.json"
 
 ### - In directory restore
 
 - run "`echo <<secret>> | base64`" to get password
+- copy the password
 - run "`gpg .env.gpg`" to decrypt file .env
 
 ## Restore Database
