@@ -18,4 +18,3 @@ database="${parts3[1]}"
 
 docker exec mysql-absensi mysqldump -u $user -p$password $database > "$this_path/DbAbsensi-$(date '+%d%m%Y').sql" \
     && docker compose -f "$this_path/docker-compose.yml" up
-    # && docker compose -f "$this_path/docker-compose.yml" down

@@ -3,9 +3,7 @@ import sys
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow, Flow
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
 
 from datetime import datetime, timedelta
@@ -180,31 +178,20 @@ def getCredentials():
 
         if os.path.exists(path_file_token):
             creds = Credentials.from_authorized_user_file(
-                path_file_token, SCOPES)
+                path_file_token, SCOPES
+            )
 
-        if not creds or not creds.valid:
-            if creds and creds.expired and creds.refresh_token:
+            if creds.expired and creds.refresh_token:
+                os.remove(path_file_token)
+
                 creds.refresh(Request())
-            else:
-                # With GUI
-                # flow = InstalledAppFlow.from_client_secrets_file(
-                #     path_file_client_secret,
-                #     SCOPES
-                # )
-                # creds = flow.run_local_server(port=0)
 
-                # Without GUI
-                flow = Flow.from_client_secrets_file(
-                    path_file_client_secret,
-                    scopes=SCOPES,
-                    redirect_uri='urn:ietf:wg:oauth:2.0:oob')
-                auth_url, _ = flow.authorization_url(prompt='consent')
-                print(f'Please go to this URL: {auth_url}')
-                code = input('Enter the authorization code : ')
-                flow.fetch_token(code=code)
-                creds = flow.credentials
-            with open(path_file_token, 'w') as token:
-                token.write(creds.to_json())
+                with open(path_file_token, 'w') as token:
+                    token.write(creds.to_json())
+
+                creds = Credentials.from_authorized_user_file(
+                    path_file_token, SCOPES
+                )
 
         return creds
     except Exception as e:
