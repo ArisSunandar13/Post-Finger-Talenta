@@ -5,7 +5,6 @@ import { exec } from "child_process";
 import fs from "fs";
 import strftime from "strftime"
 
-const datetime_now = strftime('%d%m%Y %H:%M:%S', new Date());
 const date_string = new Date().toUTCString();
 
 // ENV Production
@@ -21,6 +20,7 @@ const token = process.env.TOKEN_PROD;
 // const token = process.env.TOKEN_DEV;
 
 function writeLog(status, message) {
+    const datetime_now = strftime('%d%m%Y %H:%M:%S', new Date());
     const result = `[${datetime_now}] ${status}: ${message} \n`
 
     fs.appendFile(

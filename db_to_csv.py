@@ -10,7 +10,6 @@ path_file_csv = f'{os.getcwd()}/data_csv/absensi.csv'
 path_file_csv_formatted = f'{os.getcwd()}/data_csv/absensi_formatted.csv'
 path_file_log = f'{os.path.abspath(sys.argv[0])[:-2]}log'
 
-time_now = datetime.now().strftime('%d%m%Y %H:%M:%S')
 
 try:
     shutil.rmtree(path_data_csv)
@@ -20,6 +19,8 @@ except Exception as e:
 
 
 def writeLog(status, message):
+    time_now = datetime.now().strftime('%d%m%Y %H:%M:%S')
+
     with open(path_file_log, 'a') as file_log:
         result = f'[{time_now}] {status}: {message}\n'
         file_log.write(result)

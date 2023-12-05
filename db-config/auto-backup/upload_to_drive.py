@@ -8,10 +8,9 @@ from googleapiclient.http import MediaFileUpload
 
 from datetime import datetime, timedelta
 
-datetime_now = datetime.now().strftime('%d%m%Y %H:%M:%S')
-
 
 def writeLog(status, message):
+    datetime_now = datetime.now().strftime('%d%m%Y %H:%M:%S')
     path_file_log = f'{os.path.abspath(sys.argv[0])[:-2]}log'
     result = f'[{datetime_now}] {status}: {message}\n'
 
