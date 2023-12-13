@@ -40,11 +40,13 @@
 - Save the file into `restore` directory
 - Run "`bash run.sh`"
 
-## Generate Token for Auto Backup Database
+## Update Token for Auto Backup Database via Telegram
 
-- Run "`bash generate_token.sh`"
-- Open URL
-- Login with account IT TMS
+Every week, token authorization needs to be updated, when the token requests to be updated, the program will send the URL to the registered telegram account.
+
+- Open the URL
+- Login with account IT TMS (mastersteel2020@gmail.com)
 - Check all access
 - Copy authorization code
-- Enter the authorization code to the terminal
+- Send the authorization code to the telegram bot (@sendTokenBackupDBAbsensi_bot)
+- Done
