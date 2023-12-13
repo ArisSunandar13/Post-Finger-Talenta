@@ -4,5 +4,8 @@ services:
     container_name: post-to-drive
     volumes:
       - .:/app
+    env_file:
+      - .env
+    restart: always
     command: ["python3", "upload_to_drive.py"]
     

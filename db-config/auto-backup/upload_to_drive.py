@@ -1,6 +1,9 @@
 import os
 import sys
 
+import generate_token
+import asyncio
+
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
@@ -194,11 +197,12 @@ def getCredentials():
                     path_file_token, SCOPES
                 )
 
-        return creds
+            return creds
     except Exception as e:
         path_file = "./token.json"
         if os.path.exists(path_file):
             os.remove(path_file)
+
         writeLog('Gagal get credentials', e)
 
 
@@ -222,7 +226,23 @@ def main():
                 deleteCloudFile(service, file_id)
 
     except Exception as e:
-        writeLog('Error', e)
+        file_message = "message.txt"
+
+        if "Your default credentials were not found" in str(e):
+            generate_token.generate()
+            if os.path.exists(file_message):
+                with open(file_message, "r") as message:
+                    text = message.read()
+                    os.remove(file_message)
+
+                    if text == "exit":
+                        writeLog('Error', e)
+                    else:
+                        main()
+            else:
+                main()
+        else:
+            writeLog('Error', e)
 
 
 if __name__ == '__main__':
