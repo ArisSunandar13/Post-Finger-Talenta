@@ -94,7 +94,7 @@ def uploadFile(service, folder_id):
             writeLog('Success', f'Upload file {file["name"]} to Drive')
 
     except Exception as e:
-        writeLog(f'Gagal upload file: {e}')
+        writeLog('Gagal upload file', e)
 
 
 def createFolder(service, folder_name):
